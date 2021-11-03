@@ -1,5 +1,5 @@
 {
-  "name": "@ddfApps/nav",
+  "name": "@ddfApps/Nav",
   "scripts": {
     "start": "webpack serve",
     "start:standalone": "webpack serve --env standalone",

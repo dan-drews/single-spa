@@ -10,6 +10,12 @@ import { registerApplication, start } from "single-spa";
 // });
 
 registerApplication({
+  name: "@ddfApps/Nav",
+  app: () => System.import("@ddfApps/Nav"),
+  activeWhen: ["/"]
+});
+
+registerApplication({
   name: "@ddfApps/ChangeOrders",
   app: () => System.import("@ddfApps/ChangeOrders"),
   activeWhen: ["/COs"]
