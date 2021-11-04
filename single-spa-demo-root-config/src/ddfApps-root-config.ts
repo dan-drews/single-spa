@@ -1,32 +1,20 @@
 import { registerApplication, start } from "single-spa";
+import {
+  constructApplications,
+  constructRoutes,
+  constructLayoutEngine,
+} from "single-spa-layout";
+import microfrontendLayout from "./microfrontend-layout.html";
 
-// registerApplication({
-//   name: "@single-spa/welcome",
-//   app: () =>
-//     System.import(
-//       "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js"
-//     ),
-//   activeWhen: ["/"],
-// });
-
-registerApplication({
-  name: "@ddfApps/Nav",
-  app: () => System.import("@ddfApps/Nav"),
-  activeWhen: ["/"]
+const routes = constructRoutes(microfrontendLayout);
+const applications = constructApplications({
+  routes,
+  loadApp({ name }) {
+    return System.import(name);
+  },
 });
+const layoutEngine = constructLayoutEngine({ routes, applications });
 
-registerApplication({
-  name: "@ddfApps/ChangeOrders",
-  app: () => System.import("@ddfApps/ChangeOrders"),
-  activeWhen: ["/COs"]
-});
-
-registerApplication({
-  name: "@ddfApps/PurchaseOrders",
-  app: () => System.import("@ddfApps/PurchaseOrders"),
-  activeWhen: ["/POs"]
-});
-
-start({
-  urlRerouteOnly: true,
-});
+applications.forEach(registerApplication);
+layoutEngine.activate();
+start();

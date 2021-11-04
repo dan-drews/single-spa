@@ -1,15 +1,9 @@
 {
   "extends": "ts-config-single-spa",
-  "files": [
-    "src/ddfApps-root-config.ts"
-  ],
+  "files": ["src/ddfApps-root-config.ts"],
   "compilerOptions": {
     "declarationDir": "dist"
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "src/**/*.test*"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test*"]
 }
